@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://e5ytfkugfrh5"]
+
+[ext_resource type="Texture2D" uid="uid://4dnmfcusn1t" path="res://icon.svg" id="1_oabld"]
+[ext_resource type="PackedScene" uid="uid://b371fa87ubf3v" path="res://character.tscn" id="2_i7s6n"]
+[ext_resource type="Texture2D" uid="uid://c1pc56i277whd" path="res://menubg.png" id="3_bpugw"]
+[ext_resource type="Script" uid="uid://dcc4hh1503hej" path="res://sprite_2d.gd" id="4_gjjrj"]
+[ext_resource type="Texture2D" uid="uid://g3uumtkcxbxe" path="res://playbutton.png" id="5_vvxqx"]
+[ext_resource type="Script" uid="uid://dftaal0gt5mtv" path="res://button.gd" id="6_cdpnt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vvij"]
+size = Vector2(208, 60)
+
+[node name="Background" type="Node2D" unique_id=1656050323]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1489332813]
+offset = Vector2(0, -50)
+zoom = Vector2(5, 5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1945911625]
+scale = Vector2(1, 0.320001)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=610998564]
+position = Vector2(-2.3841858e-07, 5.9604645e-08)
+scale = Vector2(1.625, 0.46875)
+texture = ExtResource("1_oabld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=645384346]
+shape = SubResource("RectangleShape2D_5vvij")
+
+[node name="Character" parent="." unique_id=421037902 instance=ExtResource("2_i7s6n")]
+position = Vector2(-50, -45)
+scale = Vector2(0.16000092, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1939409578]
+position = Vector2(0.5000029, -50.500008)
+scale = Vector2(0.20399307, 0.18194444)
+texture = ExtResource("3_bpugw")
+script = ExtResource("4_gjjrj")
+
+[node name="Button" type="Button" parent="Sprite2D" unique_id=1992364511]
+offset_left = -242.65532
+offset_top = -52.213696
+offset_right = 225.34468
+offset_bottom = 115.7863
+icon = ExtResource("5_vvxqx")
+script = ExtResource("6_cdpnt")
+
+[connection signal="mouse_entered" from="Sprite2D/Button" to="Sprite2D/Button" method="_on_mouse_entered"]
+[connection signal="pressed" from="Sprite2D/Button" to="Sprite2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Sprite2D/Button" to="Sprite2D/Button" method="_on_pressed"]
